@@ -1,0 +1,17 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        for i in range(len(matrix)):
+            start = 0
+            end = len(matrix[0]) - 1
+
+            while start <= end:
+                mid = (start + end) // 2
+                if matrix[i][mid] == target:
+                    return True
+                while start <= end and matrix[i][mid] > target:
+                    end -= 1
+                    mid = (start + end) // 2
+                while start <= end and matrix[i][mid] < target:
+                    start += 1
+                    mid = (start + end) // 2
+        return False
